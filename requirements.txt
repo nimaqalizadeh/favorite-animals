@@ -1,0 +1,9 @@
+# Main Modules
+django~=4.2
+djangorestframework==3.15.2
+psycopg[binary]
+
+# Development modules
+
+# Deployment modules
+

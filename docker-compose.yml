@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+  db:
+    image: 'postgres:15-alpine'
+    container_name: 'postgres'
+    restart: always
+    environment:
+      - 'POSTGRES_DATABASE=postgres'
+      - 'POSTGRES_USER=postgres_user'
+      - 'POSTGRES_PASSWORD=postgres_password'
+    expose:
+      - '5432'
+    volumes:
+      - './dbdata:/var/lib/postgres/data'
+
+  backend:
+    build: .
+    container_name: 'backend'
+    restart: always
+    volumes:
+      - './app:/usr/src/app'
+    working_dir: '/usr/src/app'
+    ports:
+      - '8000:8000'
+    environment:
+      - 'SECRET_KEY=django-insecure-m@yszodar$hs)58v&1gta-2qccr$abdw-4e@9=16uk+nlt!#p9'
+      - 'POSTGRES_DATABASE=postgres'
+      - 'POSTGRES_USER=postgres_user'
+      - 'POSTGRES_PASSWORD=postgres_password'
+      - 'POSTGRES_HOST=postgres'
+    depends_on:
+      - 'db'
+
+
+    
+
+
