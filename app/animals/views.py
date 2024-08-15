@@ -1,9 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
-from django.views.decorators.http import require_POST
 from django.views.generic import ListView, View
+from django.shortcuts import get_object_or_404
 
 from .models import Animal
 
@@ -18,7 +17,6 @@ class AnimalListView(LoginRequiredMixin, ListView):
         return Animal.objects.filter(user=self.request.user)
 
 
-# @method_decorator(require_POST, name="dispatch")
 class AnimalAddView(LoginRequiredMixin, View):
     login_url = reverse_lazy("accounts:login")
 
@@ -37,5 +35,20 @@ class AnimalAddView(LoginRequiredMixin, View):
         return JsonResponse(
             {
                 "name": animal.name,
+                'id': animal.id
+            }
+        )
+class AnimalDeleteView(LoginRequiredMixin, View):
+
+    login_url = reverse_lazy("accounts:login")
+
+    def post(self, request, *args, **kwargs):
+        animal_id = request.POST.get('id')
+        animal = get_object_or_404(Animal, id=animal_id, user=request.user)
+        animal.delete()
+        return JsonResponse(
+            {
+                "success": True,
+                "message": "Animal deleted successfully"
             }
         )
