@@ -1,4 +1,4 @@
-
+{% load static %}
 <h2>My Animals</h2>
 
 <!-- List of animals -->
@@ -18,7 +18,7 @@
 <div id="error-message" style="color: red;"></div>
 
 <!-- JavaScript to handle the AJAX request -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
 <script>
     $(document).ready(function() {
         $('#add-animal-form').on('submit', function(event) {

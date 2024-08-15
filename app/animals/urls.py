@@ -1,11 +1,11 @@
-from django.contrib import admin
-from django.urls import path, include
-from .views import AnimalListView, AnimalAddView
+from django.urls import path
 
-app_name = 'animals'
+from .views import AnimalAddView, AnimalListView
+
+app_name = "animals"
 
 urlpatterns = [
-    path('', AnimalListView.as_view(), name='list_animals'),
-    path('add/', AnimalAddView.as_view(), name='add_animal'),
+    path("", AnimalListView.as_view(), name="list_animals"),
+    path("add/", AnimalAddView.as_view(), name="add_animal"),
     # path('delete/<int:animal_id>/', AnimalDeleteView.as_view(), name='delete_animal')
 ]
