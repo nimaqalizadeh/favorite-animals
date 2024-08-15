@@ -1,0 +1,48 @@
+
+<h2>My Animals</h2>
+
+<!-- List of animals -->
+<ul id="animal-list">
+    {% for animal in animals %}
+    <li>{{ animal.name }} <li>
+    {% endfor %}
+</ul>
+
+<!-- Form to add a new animal -->
+<form id="add-animal-form">
+    <input type="text" id="animal-name" name="name" placeholder="Animal Name" required>
+    <button type="submit">Add Animal</button>
+</form>
+
+<!-- Display errors -->
+<div id="error-message" style="color: red;"></div>
+
+<!-- JavaScript to handle the AJAX request -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#add-animal-form').on('submit', function(event) {
+            event.preventDefault();
+            var name = $('#animal-name').val();
+            $.ajax({
+                url: "{% url 'animals:add_animal' %}",
+                type: "POST",
+                data: {
+                    name: name,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    // Update the animal list
+                    $('#animal-list').append('<li>' + response.name +'</li>');
+                    // Clear the form
+                    $('#add-animal-form')[0].reset();
+                    // Clear any error messages
+                    $('#error-message').text('');
+                },
+                error: function(xhr) {
+                    $('#error-message').text(xhr.responseJSON.error);
+                }
+            });
+        });
+    });
+</script>
