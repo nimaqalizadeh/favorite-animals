@@ -16,8 +16,8 @@ This Django application is designed to manage animals with user authentication a
 1. **Clone the Repository**
 
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone git@github.com:nimaqalizadeh/manage-animals.git
+   cd manage-animals
    ```
 
 2. **Build and Start Containers**
