@@ -1,10 +1,11 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.urls import reverse
 
 User = get_user_model()
 
 
-class Animal(models.Model):
+class Note(models.Model):
     # category = models.ForeignKey('Category', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)

@@ -1,10 +1,11 @@
 from rest_framework import serializers
-from ...models import Animal
+from ...models import Note
 
 
-class AnimalSerializer(serializers.ModelSerializer):
+class NoteSerializer(serializers.ModelSerializer):
+
     class Meta:
-        model = Animal
+        model = Note
         fields = ['id', 'user', 'name']
         read_only_fields = ['id', 'user'] 
 

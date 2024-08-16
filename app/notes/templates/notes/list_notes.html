@@ -2,18 +2,18 @@
 {% load static %}
 
 {% block html_body %}
-<h2>Enter Animals</h2>
+<h2>Enter Notes</h2>
 
-<!-- List of animals -->
-<ul id="animal-list">
-    {% for animal in animals %}
-    <li>{{ animal.name }}</li>
+<!-- List of notes -->
+<ul id="note-list">
+    {% for note in notes %}
+    <li>{{ note.name }}</li>
     {% endfor %}
 </ul>
 
-<!-- Form to add a new animal -->إ
-<form id="add-animal-form">
-    <input type="text" id="animal-name-add" name="name" placeholder="Animal Name" required>
+<!-- Form to add a new note -->
+<form id="add-note-form">
+    <input type="text" id="note-name-add" name="name" placeholder="Note Name" required>
     <button type="submit">Add</button>
 </form>
 <br>
@@ -21,9 +21,9 @@
 <form action="{% url 'accounts:logout' %}" method="post">
     {% csrf_token %}
     <button type="submit">Logout</button>
-</form
+</form>
 
-<!-- Display errors -->
+<!--Display errors-->
 <div id="error-message" style="color: red;"></div>
 
 <!-- JavaScript to handle the AJAX request -->
@@ -31,21 +31,21 @@
 <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
 <script>
     $(document).ready(function() {
-        $('#add-animal-form').on('submit', function(event) {
+        $('#add-note-form').on('submit', function(event) {
             event.preventDefault();
-            var name = $('#animal-name-add').val();
+            var name = $('#note-name-add').val();
             $.ajax({
-                url: "{% url 'animals:add_animal' %}",
+                url: "{% url 'notes:add_note' %}",
                 type: "POST",
                 data: {
                     name: name,
                     csrfmiddlewaretoken: '{{ csrf_token }}'
                 },
                 success: function(response) {
-                    // Update the animal list
-                    $('#animal-list').append('<li>' + response.name + '</li>');
+                    // Update the note list
+                    $('#note-list').append('<li>' + response.name + '</li>');
                     // Clear the form
-                    $('#add-animal-form')[0].reset();
+                    $('#add-note-form')[0].reset();
                     // Clear any error messages
                     $('#error-message').text('');
                 },

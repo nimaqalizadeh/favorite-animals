@@ -20,7 +20,7 @@ class AccountViewsTests(TestCase):
             'password2': self.password,
         })
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('animals:list_animals'))
+        self.assertRedirects(response, reverse('notes:list_notes'))
         self.assertTrue(User.objects.filter(username=self.username).exists())
 
     def test_register_view_failure(self):
@@ -40,7 +40,7 @@ class AccountViewsTests(TestCase):
             'password': self.password,
         })
         self.assertEqual(response.status_code, 302) 
-        self.assertRedirects(response, reverse('animals:list_animals'))
+        self.assertRedirects(response, reverse('notes:list_notes'))
 
     def test_login_view_failure(self):
         response = self.client.post(self.login_url, {

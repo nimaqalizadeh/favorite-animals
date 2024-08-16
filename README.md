@@ -1,8 +1,8 @@
-# Django Animal Management App
+# Django Note Management App
 
 ## Overview
 
-This Django application is designed to manage animals with user authentication and CRUD (Create, Read, Update, Delete) functionalities. It uses PostgreSQL as the database and is containerized with Docker for both the backend and the database.
+This Django application is designed to manage notes with user authentication and CRUD (Create, Read, Update, Delete) functionalities. It uses PostgreSQL as the database and is containerized with Docker for both the backend and the database.
 
 ## Getting Started
 
@@ -16,8 +16,8 @@ This Django application is designed to manage animals with user authentication a
 1. **Clone the Repository**
 
    ```bash
-   git clone git@github.com:nimaqalizadeh/manage-animals.git
-   cd manage-animals
+   git clone git@github.com:nimaqalizadeh/manage-notes.git
+   cd manage-notes
    ```
 
 2. **Build and Start Containers**
@@ -39,23 +39,23 @@ The migrations are handeled in `Dockerfile` file.
 - Login: `/accounts/login`
 - Logout: `/accounts/logout`
 
-Register a new user, log in, and log out to manage your animal records.
+Register a new user, log in, and log out to manage your note records.
 
-2. **Animal Management**
+2. **Note Management**
 
-After logging in, you can manage your animals through the following URL:
+After logging in, you can manage your notes through the following URL:
 
-- View and Add Animals: `/animals/`
+- View and Add Notes: `/notes/`
 
-Use the form to add new animals. This operation is handled via AJAX.
+Use the form to add new notes. This operation is handled via AJAX.
 
 3. **API Endpoints**
 
-The application provides a RESTful API for managing animals (Only authenticated users can access this endpoint):
+The application provides a RESTful API for managing notes (Only authenticated users can access this endpoint):
 
-- List and Create Animals: `GET /animals/api/v1/list` and `POST /animals/api/v1/list`
+- List and Create Notes: `GET /notes/api/v1/list` and `POST /notes/api/v1/list`
 
-- Read, Update, and Delete Animals: `GET /animals/api/v1/detail/<id>/`, `PUT /animals/api/v1/detail/<id>/`, `DELETE /animals/api/v1/detail/<id>/`
+- Read, Update, and Delete Notes: `GET /notes/api/v1/detail/<id>/`, `PUT /notes/api/v1/detail/<id>/`, `DELETE /notes/api/v1/detail/<id>/`
 
 ## License
 
