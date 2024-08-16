@@ -38,17 +38,17 @@ class AnimalAddView(LoginRequiredMixin, View):
                 'id': animal.id
             }
         )
-class AnimalDeleteView(LoginRequiredMixin, View):
+# class AnimalDeleteView(LoginRequiredMixin, View):
 
-    login_url = reverse_lazy("accounts:login")
+#     login_url = reverse_lazy("accounts:login")
 
-    def post(self, request, *args, **kwargs):
-        animal_id = request.POST.get('id')
-        animal = get_object_or_404(Animal, id=animal_id, user=request.user)
-        animal.delete()
-        return JsonResponse(
-            {
-                "success": True,
-                "message": "Animal deleted successfully"
-            }
-        )
+#     def post(self, request, *args, **kwargs):
+#         animal_id = request.POST.get('id')
+#         animal = get_object_or_404(Animal, id=animal_id, user=request.user)
+#         animal.delete()
+#         return JsonResponse(
+#             {
+#                 "success": True,
+#                 "message": "Animal deleted successfully"
+#             }
+#         )

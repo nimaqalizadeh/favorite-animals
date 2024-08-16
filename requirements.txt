@@ -4,6 +4,7 @@ djangorestframework==3.15.2
 psycopg[binary]
 
 # Development modules
+markdown==3.6
 
 # Deployment modules
 

@@ -1,25 +1,28 @@
+{% extends 'base.html' %}
 {% load static %}
-<h2>My Animals</h2>
+
+{% block html_body %}
+<h2>Enter Animals</h2>
 
 <!-- List of animals -->
 <ul id="animal-list">
     {% for animal in animals %}
-    <li>{{ animal.name }}<span style="margin-inline: 10px;"><button class="remove-animal" data-id={{animal.id}} type="button">remove</button></span></li>
+    <li>{{ animal.name }}</li>
     {% endfor %}
 </ul>
 
 <!-- Form to add a new animal -->
 <form id="add-animal-form">
     <input type="text" id="animal-name-add" name="name" placeholder="Animal Name" required>
-    <button type="submit">Add Animal</button>
+    <button type="submit">Add</button>
 </form>
 
 <!-- Display errors -->
 <div id="error-message" style="color: red;"></div>
 
 <!-- JavaScript to handle the AJAX request -->
-<!-- <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script> -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
 <script>
     $(document).ready(function() {
         $('#add-animal-form').on('submit', function(event) {
@@ -34,13 +37,7 @@
                 },
                 success: function(response) {
                     // Update the animal list
-                    $('#animal-list').append('<li>' + response.name +
-                       
-                        
-
-
-                        
-                        '</li>');
+                    $('#animal-list').append('<li>' + response.name + '</li>');
                     // Clear the form
                     $('#add-animal-form')[0].reset();
                     // Clear any error messages
@@ -53,26 +50,4 @@
         });
     });
 </script>
-<script>
-    $(document).ready(function() {
-        $('#remove-animal').on('click', function(event) {
-            event.preventDefault();
-            var animal_id = $(this).data('id');
-            $.ajax({
-                url: "{% url 'animals:delete_animal' %}",
-                type: "POST",
-                data: {
-                    id: animal_id,
-                    csrfmiddlewaretoken: '{{ csrf_token }}'
-                },
-                success: function(response) {
-                    button.closest('li').remove();
-                    $('#error-message').text('');
-                },
-                error: function(xhr) {
-                    $('#error-message').text(xhr.responseJSON.error);
-                }
-            });
-        });
-    });
-</script>
+{% endblock html_body %}
