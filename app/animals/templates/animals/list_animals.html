@@ -11,11 +11,17 @@
     {% endfor %}
 </ul>
 
-<!-- Form to add a new animal -->
+<!-- Form to add a new animal -->إ
 <form id="add-animal-form">
     <input type="text" id="animal-name-add" name="name" placeholder="Animal Name" required>
     <button type="submit">Add</button>
 </form>
+<br>
+<!-- Logout Button -->
+<form action="{% url 'accounts:logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form
 
 <!-- Display errors -->
 <div id="error-message" style="color: red;"></div>
